@@ -174,19 +174,29 @@ Dealers in High Quality Electronics – Deep Freezers, Air Conditioners, Washing
 <input type="tel" placeholder="Your Phone" required>
 
 <div class="products">
-<label><input type="checkbox"> Fridge</label>
-<label><input type="checkbox"> Deep Freezer</label>
-<label><input type="checkbox"> Washing Machine</label>
-<label><input type="checkbox"> Plasma TV</label>
-<label><input type="checkbox"> LED TV</label>
-<label><input type="checkbox"> Air Conditioner</label>
+  <label><input type="checkbox" value="Fridge"> Fridge</label>
+  <label><input type="checkbox" value="Deep Freezer"> Deep Freezer</label>
+  <label><input type="checkbox" value="Glass Cooker"> Glass Cooker</label>
+  <label><input type="checkbox" value="AC Standing Unit"> AC Standing Unit</label>
+  <label><input type="checkbox" value="AC Split Unit"> AC Split Unit</label>
+  <label><input type="checkbox" value="Generator"> Generator</label>
+  <label><input type="checkbox" value="Washing Machine"> Washing Machine</label>
+  <label><input type="checkbox" value="Electric Oven"> Electric Oven</label>
+  <label><input type="checkbox" value="Blender"> Blender</label>
+  <label><input type="checkbox" value="Home Theater"> Home Theater</label>
+  <label><input type="checkbox" value="Plasma TV"> Plasma TV</label>
+  <label><input type="checkbox" value="Standing Fan"> Standing Fan</label>
+  <label><input type="checkbox" value="Solar Fan"> Solar Fan</label>
+  <label><input type="checkbox" value="Yam Pounder"> Yam Pounder</label>
 </div>
 
 <div class="buttons">
-<a href="https://wa.me/2348060937893" target="_blank">Chat on WhatsApp</a>
+<a href="https://wa.me/2348060937893?text=Hello%20C%20Mex%20Electronics%2C%20I%20am%20interested%20in%20your%20products.%20Please%20tell%20me%20more." target="_blank">
+Chat on WhatsApp
+</a>
 </div>
 
-<button type="submit">Submit Order</button>
+<button type="button" onclick="submitOrder()">Submit Order</button>
 </form>
 </section>
 
@@ -200,6 +210,29 @@ Asaba, Delta State
 <section>
 <iframe src="https://www.google.com/maps?q=Asaba%20Delta%20State&output=embed"></iframe>
 </section>
+
+<script>
+function submitOrder() {
+  const name = document.querySelector('input[type="text"]').value.trim();
+  const phone = document.querySelector('input[type="tel"]').value.trim();
+
+  const selected = Array.from(document.querySelectorAll('.products input:checked'))
+    .map(item => item.value);
+
+  if (!name || !phone || selected.length === 0) {
+    alert("Please fill your name, phone and select at least one product.");
+    return;
+  }
+
+  let message = `Hello C Mex Electronics,%0A
+My Name: ${name}%0A
+Phone: ${phone}%0A
+I want to order:%0A- ${selected.join('%0A- ')}%0A
+Please provide price and availability.`;
+
+  window.open(`https://wa.me/2348060937893?text=${message}`, '_blank');
+}
+</script>
 
 </body>
 </html>
